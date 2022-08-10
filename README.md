@@ -25,7 +25,7 @@ The Phase 4 Adancement Criteria for this API are not yet defined.
   - [Logging use case](#logging-use-case)
   - [Stderr use case](#stderr-use-case)
 - [Detailed design discussion](#detailed-design-discussion)
-  - [[What levels should there be?]](#what-levels-should-there-be)
+  - [What levels should there be?](#what-levels-should-there-be)
 - [Stakeholder Interest & Feedback](#stakeholder-interest--feedback)
 - [References & acknowledgements](#references--acknowledgements)
 
@@ -94,8 +94,6 @@ simplest thing that works for now. It may evolve into something else though.
 ### Stakeholder Interest & Feedback
 
 TODO before entering Phase 3.
-
-[This should include a list of implementers who have expressed interest in implementing the proposal]
 
 ### References & acknowledgements
 
