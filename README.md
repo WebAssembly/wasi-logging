@@ -72,10 +72,12 @@ The logging API can be used as an output for a command-style stderr.
 
 ### What levels should there be?
 
-The log levels are similar to those of [log4j] and the [Rust log crate].
+The log levels are similar to those of [log4j], the [Rust log crate], and the
+[Python log levels]
 
-It excludes log4j's `FATAL` level. The recommended behavior on a `FATAL` error
-is to emit an `Error`-level error and to trap.
+It excludes log4j's `FATAL` level and Python's `CRITICAL` level. The recommended
+behavior on a `FATAL` or `CRITICAL` error is to emit an `Error`-level error and
+to trap.
 
 Another similar API is the POSIX `syslog` function. `LOG_EMERG`, `LOG_ALERT`,
 and `LOG_CRIT` have no corresponding level, because WASI programs don't have
@@ -86,6 +88,7 @@ because other popular systems don't make a distinction between these levels.
 
 [log4j]: https://logging.apache.org/log4j/2.x/manual/customloglevels.html
 [Rust log crate]: https://docs.rs/log/latest/log/enum.Level.html
+[Python log levels]: https://docs.python.org/3/library/logging.html#levels
 
 ### What should the context be?
 
