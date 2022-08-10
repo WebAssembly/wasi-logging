@@ -5,7 +5,7 @@ simple priority levels and context values.
 
 ## `level`
 ```wit
-/// 
+/// A log level, describing a kind of message.
 enum level {
    /// Describes messages about the values of variables and the flow of control
    /// within a program.
