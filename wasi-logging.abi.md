@@ -2,7 +2,7 @@
 
 ## <a href="#level" name="level"></a> `level`: enum
 
-  
+  A log level, describing a kind of message.
 
 Size: 1, Alignment: 1
 
