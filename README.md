@@ -22,14 +22,10 @@ The Phase 4 Adancement Criteria for this API are not yet defined.
 - [Goals](#goals)
 - [Non-goals](#non-goals)
 - [API walk-through](#api-walk-through)
-  - [Use case 1](#use-case-1)
-  - [Use case 2](#use-case-2)
+  - [Logging use case](#logging-use-case)
+  - [Stderr use case](#stderr-use-case)
 - [Detailed design discussion](#detailed-design-discussion)
-  - [[Tricky design choice 1]](#tricky-design-choice-1)
-  - [[Tricky design choice 2]](#tricky-design-choice-2)
-- [Considered alternatives](#considered-alternatives)
-  - [[Alternative 1]](#alternative-1)
-  - [[Alternative 2]](#alternative-2)
+  - [[What levels should there be?]](#what-levels-should-there-be)
 - [Stakeholder Interest & Feedback](#stakeholder-interest--feedback)
 - [References & acknowledgements](#references--acknowledgements)
 
@@ -45,7 +41,7 @@ programs.
 
 ### Non-goals
 
-WASI Clocks is not aiming to be a general-purpose output stream, with
+WASI Logging is not aiming to be a general-purpose output stream, with
 support for error reporting or asynchronous operation.
 
 ### API walk-through
