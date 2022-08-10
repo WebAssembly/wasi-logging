@@ -69,11 +69,11 @@ The logging API can be used as an output for a command-style stderr.
 ### What levels should there be?
 
 The log levels are similar to those of [log4j], the [Rust log crate], the
-[Python log levels], and the [Ruby log levels].
+[Python log levels], the [Ruby log levels], and the [.NET log levels].
 
-It excludes log4j's and Ruby's `FATAL` level and Python's `CRITICAL` level. The
-recommended behavior on a `FATAL` or `CRITICAL` error is to emit an `Error`-level
-error and to trap.
+It excludes log4j's and Ruby's `FATAL` level, Python's `CRITICAL`, and .NET's
+`Critical` level. The recommended behavior on a `FATAL`, `CRITICAL`, or
+`Critical` error is to emit an `Error`-level error and to trap.
 
 Another similar API is the POSIX `syslog` function. `LOG_EMERG`, `LOG_ALERT`,
 and `LOG_CRIT` have no corresponding level, because WASI programs don't have
@@ -86,6 +86,7 @@ because other popular systems don't make a distinction between these levels.
 [Rust log crate]: https://docs.rs/log/latest/log/enum.Level.html
 [Python log levels]: https://docs.python.org/3/library/logging.html#levels
 [Ruby log levels]: https://ruby-doc.org/stdlib-2.4.0/libdoc/logger/rdoc/Logger.html
+[.NET log levels]: https://docs.microsoft.com/en-us/dotnet/core/extensions/logging?tabs=command-line#log-level
 
 ### What should the context be?
 
