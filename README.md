@@ -1,33 +1,25 @@
-# [Example WASI proposal]
-
-This template can be used to start a new proposal, which can then be proposed in the WASI Subgroup meetings.
-
-The sections below are recommended. However, every proposal is different, and the community can help you flesh out the proposal, so don't block on having something filled in for each one of them.
-
-Thank you to the W3C Privacy CG for the [inspiration](https://github.com/privacycg/template)!
-
-# [Title]
+# WASI Logging
 
 A proposed [WebAssembly System Interface](https://github.com/WebAssembly/WASI) API.
 
 ### Current Phase
 
-[Fill in the current phase, e.g. Phase 1]
+WASI-logging is currently in [Phase 1].
+
+[Phase 1]: https://github.com/WebAssembly/WASI/blob/42fe2a3ca159011b23099c3d10b5b1d9aff2140e/docs/Proposals.md#phase-1---proposed-spec-text-available-cg--wg
 
 ### Champions
 
-- [Champion 1]
-- [Champion 2]
-- [etc.]
+- Dan Gohman
 
 ### Phase 4 Advancement Criteria
 
-TODO before entering Phase 2.
+The Phase 4 Adancement Criteria for this API are not yet defined.
 
-## Table of Contents [if the explainer is longer than one printed page]
+## Table of Contents
 
 - [Introduction](#introduction)
-- [Goals [or Motivating Use Cases, or Scenarios]](#goals-or-motivating-use-cases-or-scenarios)
+- [Goals](#goals)
 - [Non-goals](#non-goals)
 - [API walk-through](#api-walk-through)
   - [Use case 1](#use-case-1)
@@ -43,57 +35,62 @@ TODO before entering Phase 2.
 
 ### Introduction
 
-[The "executive summary" or "abstract". Explain in a few sentences what the goals of the project are, and a brief overview of how the solution works. This should be no more than 1-2 paragraphs.]
+WASI Logging is a WASI API for emitting log messages.
 
-### Goals [or Motivating Use Cases, or Scenarios]
+### Goals
 
-[What is the end-user need which this project aims to address?]
+The primary goal of WASI logging is to be a simple logging API usable
+as a stderr destination in commands and as a logging output in headless
+programs.
 
 ### Non-goals
 
-[If there are "adjacent" goals which may appear to be in scope but aren't, enumerate them here. This section may be fleshed out as your design progresses and you encounter necessary technical and other trade-offs.]
+WASI Clocks is not aiming to be a general-purpose output stream, with
+support for error reporting or asynchronous operation.
 
 ### API walk-through
 
-[Walk through of how someone would use this API.]
+There are two main use cases.
 
-#### [Use case 1]
+#### Logging use case
 
-[Provide example code snippets and diagrams explaining how the API would be used to solve the given problem]
+The logging API can be used to log simple messages:
 
-#### [Use case 2]
+```
+   log(Level::Info, "fyi", "The program is running");
+```
 
-[etc.]
+#### Stderr use case
+
+The logging API can be used as an output for a command-style stderr.
+
+```
+   log(Level::Info, "stderr", "Message printed to stderr in a command");
+```
 
 ### Detailed design discussion
 
-[This section should mostly refer to the .wit.md file that specifies the API. This section is for any discussion of the choices made in the API which don't make sense to document in the spec file itself.]
+### What levels should there be?
 
-#### [Tricky design choice #1]
+The log levels are similar to those of [log4j] and the [Rust log crate].
 
-[Talk through the tradeoffs in coming to the specific design point you want to make.]
+It excludes log4j's `FATAL` level. The recommended behavior on a `FATAL` error
+is to emit an `Error`-level error and to trap.
 
-```
-// Illustrated with example code.
-```
+Another similar API is the POSIX `syslog` function. `LOG_EMERG`, `LOG_ALERT`,
+and `LOG_CRIT` have no corresponding level, because WASI programs don't have
+visibility into how their own errors affect "the system" as a whole. A plain
+`Error` level should be used, optionally with a trap if it's desirable to
+halt execution. And `LOG_NOTICE` and `LOG_INFO` both correspond to `Info`,
+because other popular systems don't make a distinction between these levels.
 
-[This may be an open question, in which case you should link to any active discussion threads.]
+[log4j]: https://logging.apache.org/log4j/2.x/manual/customloglevels.html
+[Rust log crate]: https://docs.rs/log/latest/log/enum.Level.html
 
-#### [Tricky design choice 2]
+### What should the context be?
 
-[etc.]
-
-### Considered alternatives
-
-[This section is not required if you already covered considered alternatives in the design discussion above.]
-
-#### [Alternative 1]
-
-[Describe an alternative which was considered, and why you decided against it.]
-
-#### [Alternative 2]
-
-[etc.]
+Currently the context parameter is an uninterpreted string, because it's the
+simplest thing that works for now. It may evolve into something else though.
 
 ### Stakeholder Interest & Feedback
 
@@ -105,6 +102,4 @@ TODO before entering Phase 3.
 
 Many thanks for valuable feedback and advice from:
 
-- [Person 1]
-- [Person 2]
-- [etc.]
+- Luke Wagner
