@@ -45,7 +45,4 @@ Size: 1, Alignment: 1
 - <a href="#log.level" name="log.level"></a> `level`: [`level`](#level)
 - <a href="#log.context" name="log.context"></a> `context`: `string`
 - <a href="#log.message" name="log.message"></a> `message`: `string`
-##### Result
-
-- `unit`
 
