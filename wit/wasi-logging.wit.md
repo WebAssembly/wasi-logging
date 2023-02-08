@@ -1,7 +1,11 @@
 # WASI Logging API
 
-WASI Logging is a logging API intended to let users emit log messages with
-simple priority levels and context values.
+## `wasi-logging`
+```wit
+/// WASI Logging is a logging API intended to let users emit log messages with
+/// simple priority levels and context values.
+default interface wasi-logging {
+```
 
 ## `level`
 ```wit
@@ -33,4 +37,8 @@ enum level {
 /// a context, which is an uninterpreted string meant to help consumers group
 /// similar messages, and a string containing the message text.
 log: func(level: level, context: string, message: string)
+```
+
+```wit
+}
 ```
