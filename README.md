@@ -69,11 +69,17 @@ The logging API can be used as an output for a command-style stderr.
 ### What levels should there be?
 
 The log levels are similar to those of [log4j], the [Rust log crate], the
-[Python log levels], the [Ruby log levels], and the [.NET log levels].
+[Python log levels], the [Ruby log levels], the [.NET log levels], the
+[Go zap library log levels], and the [Go zerolog library levels].
 
 It excludes log4j's and Ruby's `FATAL` level, Python's `CRITICAL`, and .NET's
 `Critical` level. The recommended behavior on a `FATAL`, `CRITICAL`, or
 `Critical` error is to emit an `Error`-level error and to trap.
+
+It exclude's zap's `DPanicLevel`, `PanicLevel`, and `FatalLevel`, and
+zerolog's `fatal` and `panic` levels, because those have the additional
+behavior of panicking or exiting the program. Wasi-logging is just a logging
+interface.
 
 Another similar API is the POSIX `syslog` function. `LOG_EMERG`, `LOG_ALERT`,
 and `LOG_CRIT` have no corresponding level, because WASI programs don't have
@@ -87,6 +93,8 @@ because other popular systems don't make a distinction between these levels.
 [Python log levels]: https://docs.python.org/3/library/logging.html#levels
 [Ruby log levels]: https://ruby-doc.org/stdlib-2.4.0/libdoc/logger/rdoc/Logger.html
 [.NET log levels]: https://docs.microsoft.com/en-us/dotnet/core/extensions/logging?tabs=command-line#log-level
+[Go zap library log levels]: https://pkg.go.dev/go.uber.org/zap/zapcore#Level
+[Go zerolog library levels]: https://github.com/rs/zerolog#leveled-logging
 
 ### What should the context be?
 
