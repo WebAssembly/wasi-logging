@@ -20,6 +20,9 @@ default interface logging {
 
        /// Describes messages indicating serious errors.
        error,
+
+       /// Describes messages indicating fatal errors.
+       critical,
     }
 
     /// Emit a log message.
