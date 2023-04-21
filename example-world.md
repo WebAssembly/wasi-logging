@@ -38,6 +38,10 @@ program.
 <p><a name="level.error"><code>error</code></a></p>
 <p>Describes messages indicating serious errors.
 </li>
+<li>
+<p><a name="level.critical"><code>critical</code></a></p>
+<p>Describes messages indicating fatal errors.
+</li>
 </ul>
 <hr />
 <h3>Functions</h3>

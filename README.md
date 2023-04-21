@@ -72,21 +72,12 @@ The log levels are similar to those of [log4j], the [Rust log crate], the
 [Python log levels], the [Ruby log levels], the [.NET log levels], the
 [Go zap library log levels], and the [Go zerolog library levels].
 
-It excludes log4j's and Ruby's `FATAL` level, Python's `CRITICAL`, and .NET's
-`Critical` level. The recommended behavior on a `FATAL`, `CRITICAL`, or
-`Critical` error is to emit an `Error`-level error and to trap.
-
-It exclude's zap's `DPanicLevel`, `PanicLevel`, and `FatalLevel`, and
-zerolog's `fatal` and `panic` levels, because those have the additional
-behavior of panicking or exiting the program. Wasi-logging is just a logging
-interface.
-
-Another similar API is the POSIX `syslog` function. `LOG_EMERG`, `LOG_ALERT`,
-and `LOG_CRIT` have no corresponding level, because WASI programs don't have
-visibility into how their own errors affect "the system" as a whole. A plain
-`Error` level should be used, optionally with a trap if it's desirable to
-halt execution. And `LOG_NOTICE` and `LOG_INFO` both correspond to `Info`,
-because other popular systems don't make a distinction between these levels.
+Another similar API is the POSIX `syslog` function. `LOG_EMERG` and `LOG_ALERT`
+have no corresponding levels, because WASI programs don't have visibility into
+how their own errors affect "the system" as a whole. A `Critical` level should
+be used instead, optionally with a trap if it's desirable to halt execution.
+Similarly, `LOG_NOTICE` and `LOG_INFO` both correspond to `Info`, because most
+of the popular systems don't make a distinction between these levels.
 
 [log4j]: https://logging.apache.org/log4j/2.x/manual/customloglevels.html
 [Rust log crate]: https://docs.rs/log/latest/log/enum.Level.html
