@@ -2,11 +2,11 @@
 <ul>
 <li>Imports:
 <ul>
-<li>interface <a href="#logging"><code>logging</code></a></li>
+<li>interface <a href="#wasi:logging_logging"><code>wasi:logging/logging</code></a></li>
 </ul>
 </li>
 </ul>
-<h2><a name="logging">Import interface logging</a></h2>
+<h2><a name="wasi:logging_logging">Import interface wasi:logging/logging</a></h2>
 <p>WASI Logging is a logging API intended to let users emit log messages with
 simple priority levels and context values.</p>
 <hr />
